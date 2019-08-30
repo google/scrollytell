@@ -1,12 +1,14 @@
 ## scrollytell
 
-This repo provides a tiny library to help web developers create animations that
-synchronize with the page's scroll position. It uses `requestAnimationFrame`
-to check the scroll status and trigger scrollytelling events.
+This is a tiny JavaScript library for creating animations that synchronize with
+scrolling. It uses `requestAnimationFrame` to check the scroll status and
+trigger scrollytelling events.
 
 Check out the mobile-friendly [examples][1] that can be used as templates.
 
 Before going over the API, let's establish a vocabulary.
+
+<img src="legend.png" width="600">
 
 <dl>
     <dt>chart</dt>
@@ -42,9 +44,9 @@ Before going over the API, let's establish a vocabulary.
     </dd>
     <dt>guideline</dt>
     <dd>
-        Virtual line stretched horizontally over the middle of the container and
-        does not scroll with its content. As panels cross the guideline they
-        trigger scrollytell events.
+        An invisible line stretched horizontally over the middle of the
+        container that does not scroll with its content. As panels cross the
+        guideline they trigger scrollytell events.
     </dd>
     <dt>panel</dt>
     <dd>
@@ -69,15 +71,13 @@ Before going over the API, let's establish a vocabulary.
     </dd>
 </dl>
 
-<img src="legend.png" width="600">
-
 ## API
 
-To use the scrollytell library, create a `Story` object and pass in your
-configuration. The config contains event handlers and querySelector strings. The
-only two fields that are absolutely required are `containerSelector` (which
-should select a single DOM element) and `panelSelector` (which should select
-several DOM elements).
+To use scrollytell, create a `Story` object and pass in your configuration. The
+config contains event handlers and querySelector strings. The only two fields
+that are absolutely required are `containerSelector` (which should select a
+single DOM element) and `panelSelector` (which should select several DOM
+elements).
 
 To make a useful story, you'll probably want to provide `enterHandler` and
 `exitHandler`, which are triggered during [requestAnimationFrame][2] when a
