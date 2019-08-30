@@ -192,7 +192,7 @@ export class Story {
         // when there is no active panel).
         if (progressChanged || panelChanged) {
             this.frameCount += 1;
-            if (this.config.progressHandler && this.progressValue !== -1) {
+            if (this.config.progressHandler) {
                 this.config.progressHandler(this, this.progressValue);
             }
         }

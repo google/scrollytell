@@ -83,11 +83,20 @@ To make a useful story, you'll probably want to provide `enterHandler` and
 `exitHandler`, which are triggered during [requestAnimationFrame][2] when a
 panel crosses in or out of the guideline.
 
+For continuous-style scrollytelling, you can provide a `progressHandler` which
+is triggered every time the progress value changes or the active panel changes.
+Instead of writing your own render loop, you can put your drawing code in the
+progress handler. This saves power on mobile devices because it only does work
+when the scroll position changes.
+
+Here's an example:
+
 ```js
 import { Story } from "./scrollytell";
 
 new Story({
     containerSelector: ".container",
+    panelSelector: ".panels p",
     developerHud: true, // <-- disable this in production!
     enterHandler: (story, panel) => {
         console.info(`Entered panel ${panel}`);
@@ -95,7 +104,6 @@ new Story({
     exitHandler: (story, panel) => {
         console.info(`Exited panel ${panel}`);
     },
-    panelSelector: ".panels p",
     progressHandler: (story, progress) => {
         const percentage = (100 * progress).toFixed(2);
         console.info(`Progress is now ${percentage}%`);
