@@ -73,23 +73,11 @@ Before going over the API, let's establish a vocabulary.
 
 ## API
 
-To use scrollytell, create a `Story` object and pass in your configuration. The
-config contains event handlers and querySelector strings. The only two fields
-that are absolutely required are `containerSelector` (which should select a
-single DOM element) and `panelSelector` (which should select several DOM
-elements).
-
-To make a useful story, you'll probably want to provide `enterHandler` and
-`exitHandler`, which are triggered during [requestAnimationFrame][2] when a
-panel crosses in or out of the guideline.
-
-For continuous-style scrollytelling, you can provide a `progressHandler` which
-is triggered every time the progress value changes or the active panel changes.
-Instead of writing your own render loop, you can put your drawing code in the
-progress handler. This saves power on mobile devices because it only does work
-when the scroll position changes.
-
-Here's an example:
+To use scrollytell, create a `Story` object and pass in a configuration object.
+The config contains event handlers and querySelector strings. The only two
+required fields are `containerSelector` (which should select a single DOM
+element) and `panelSelector` (which should select several DOM elements). Here's
+an example:
 
 ```js
 import { Story } from "./scrollytell";
@@ -110,6 +98,16 @@ new Story({
     }
 });
 ```
+
+To make a useful story, you'll probably want to do something useful in
+`enterHandler` and `exitHandler`, which are triggered during
+[requestAnimationFrame][2] when a panel crosses in or out of the guideline.
+
+For continuous-style scrollytelling, you can provide a `progressHandler` which
+is triggered every time the progress value changes or the active panel changes.
+Instead of writing your own render loop, you can put your drawing code in the
+progress handler. This saves power on mobile devices because it only does work
+when the scroll position changes.
 
 Additionally, the `Story` object exposes a few methods:
 
@@ -135,6 +133,10 @@ getProgressValue(): number;
 showDeveloperHud(enable: boolean): void;
 
 ```
+
+The above methods provide a way of using the library if you'd like to avoid the
+event handlers and instead create your own render loop that polls the status of
+the story.
 
 For more information check out the [examples][1] and the [TypeScript source][3].
 
