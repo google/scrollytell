@@ -74,6 +74,14 @@ export class Story {
         return this.progressValue;
     }
     /**
+     * Forces a re-assessment of the active panel index and progress value. Also forces
+     * the progress handler to trigger on the subsequent frame.
+     */
+    refresh() {
+        this.scrollTop = undefined;
+        this.activePanelIndex = -2;
+    }
+    /**
      * Toggles the heads-up-display for development purposes. Do not enable
      * when your site is in production.
      */
