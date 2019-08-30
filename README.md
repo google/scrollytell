@@ -111,9 +111,6 @@ new Story({
 });
 ```
 
-If you want the chart to encompass the background of the container, you can
-include a `chartSelector` field in the config and set `fullsizeChart` to true.
-
 Additionally, the `Story` object exposes a few methods:
 
 ```ts
@@ -141,6 +138,17 @@ showDeveloperHud(enable: boolean): void;
 
 For more information check out the [examples][1] and the [TypeScript source][3].
 
+## Fullsize mode
+
+If you want the chart to encompass the background of the container, you can
+enable `fullsizeChart` in the config and provide a `chartSelector` field.
+This resizes the chart to match the height of the initial window.
+
+In fullsize mode you can also set `segmentSelector` in the config to select an
+additional set of elements that get resized to the initial window height.
+This is useful for creating fixed-sized panels or panel segments. Go to the
+[segmented example][6] to see this in action.
+
 ## Issues
 
 Because of its focus on mobile platforms, currently the scrollytell library does
@@ -162,3 +170,4 @@ This is not an officially supported Google product.
 [3]: https://github.com/google/scrollytell/blob/master/scrollytell.ts
 [4]: https://amp.dev/about/stories/
 [5]: https://bost.ocks.org/mike/scroll/
+[6]: https://google.github.io/scrollytell/examples/segmented_sticky_fullsize.html

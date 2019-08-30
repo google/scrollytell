@@ -71,6 +71,10 @@
     label {
         font-size: 12px;
     }
+    segment {
+        height: 200px; /* <== Manipulated by Javascript */
+        display: block;
+    }
 </style>
 </head>
 <body>
@@ -89,21 +93,13 @@
     </div>
     <div class="panel">
         <h2>Panel 1</h2>
-        <div><div>As soon as the light in the bedroom went out there was a stirring and a fluttering all through the farm buildings.</div></div>
-        <div><div>Word had gone round during the day that old Major, the prize Middle White boar, had had a strange dream on the previous night and wished to communicate it to the other animals.</div></div>
-        <div><div>It had been agreed that they should all meet in the big barn as soon as Mr. Jones was safely out of the way.</div></div>
-        <div><div>Old Major (so he was always called, though the name under which he had been exhibited was Willingdon Beauty) was so highly regarded on the farm that everyone was quite ready to lose an hour's sleep in order to hear what he had to say.</div></div>
+        <segment><div>As soon as the light in the bedroom went out there was a stirring and a fluttering all through the farm buildings.</div></segment>
+        <segment><div>Word had gone round during the day that old Major, the prize Middle White boar, had had a strange dream on the previous night and wished to communicate it to the other animals.</div></segment>
     </div>
     <div class="panel">
         <h2>Panel 2</h2>
-        <div><div>At one end of the big barn, on a sort of raised platform, Major was already ensconced on his bed of straw, under a lantern which hung from a beam.</div></div>
-        <div><div>He was twelve years old and had lately grown rather stout, but he was still a majestic-looking pig, with a wise and benevolent appearance in spite of the fact that his tushes had never been cut.</div></div>
-        <div><div>Before long the other animals began to arrive and make themselves comfortable after their different fashions.</div></div>
-        <div><div>First came the three dogs, Bluebell, Jessie, and Pincher, and then the pigs, who settled down in the straw immediately in front of the platform.</div></div>
-        <div><div>The hens perched themselves on the window-sills, the pigeons fluttered up to the rafters, the sheep and cows lay down behind the pigs and began to chew the cud.</div></div>
-        <div><div>The two cart-horses, Boxer and Clover, came in together, walking very slowly and setting down their vast hairy hoofs with great care lest there should be some small animal concealed in the straw.</div></div>
-        <div><div>Clover was a stout motherly mare approaching middle life, who had never quite got her figure back after her fourth foal.</div></div>
-        <div><div>Boxer was an enormous beast, nearly eighteen hands high, and as strong as any two ordinary horses put together.</div></div>
+        <segment><div>It had been agreed that they should all meet in the big barn as soon as Mr. Jones was safely out of the way.</div></segment>
+        <segment><div>Old Major (so he was always called, though the name under which he had been exhibited was Willingdon Beauty) was so highly regarded on the farm that everyone was quite ready to lose an hour's sleep in order to hear what he had to say.</div></segment>
     </div>
 </div>
 </div>
@@ -123,7 +119,8 @@ const story = window.story = new Story({
     containerSelector: ".container",
     fullsizeChart: true,
     panelSelector: ".panel",
-    progressHandler: render
+    progressHandler: render,
+    segmentSelector: "segment"
 });
 
 const checkbox = document.getElementById('show_hud');

@@ -46,6 +46,10 @@ export class Story {
             const height = this.container.getBoundingClientRect().height;
             this.chart.style.height = `${height}px`;
             this.chart.style.top = "0";
+            const segments = document.querySelectorAll(config.segmentSelector);
+            for (const segment of segments) {
+                segment.style.height = `${height}px`;
+            }
         }
         if (config.developerHud) {
             this.showDeveloperHud(true);
