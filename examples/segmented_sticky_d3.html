@@ -52,6 +52,10 @@
             width: 100%;
         }
 
+        .panel.intro > * {
+            height: auto;
+        }
+
         .panel>h2 {
             height: inherit;
             background: rgba(255, 200, 0, 0.7);
@@ -93,8 +97,7 @@
             &nbsp;<input id="show_hud" type="checkbox" name="show_hud">
             <label for="show_hud">Show Scrollytell HUD</label>
             <h1>Animal Farm</h1>
-            <div class="panel">
-                <h2>America</h2>
+            <div class="panel intro">
                 <div>
                     <div>Mr. Jones, of the Manor Farm, had locked the hen-houses for the night, but was too drunk to
                         remember to shut the pop-holes.</div>
@@ -108,7 +111,7 @@
             <svg class="chart constrain">
             </svg>
             <div class="panel">
-                <h2>Alabama</h2>
+                <h2>Panel 1</h2>
                 <div>
                     <div>As soon as the light in the bedroom went out there was a stirring and a fluttering all through
                         the farm buildings.</div>
@@ -128,7 +131,7 @@
                 </div>
             </div>
             <div class="panel">
-                <h2>Alaska</h2>
+                <h2>Panel 2</h2>
                 <div>
                     <div>At one end of the big barn, on a sort of raised platform, Major was already ensconced on his
                         bed of straw, under a lantern which hung from a beam.</div>
@@ -144,7 +147,7 @@
                 </div>
             </div>
             <div class="panel">
-                <h2>Arizona</h2>
+                <h2>Panel 3</h2>
                 <div>
                     <div>First came the three dogs, Bluebell, Jessie, and Pincher, and then the pigs, who settled down
                         in the straw immediately in front of the platform.</div>
@@ -160,7 +163,7 @@
                 </div>
             </div>
             <div class="panel">
-                <h2>Colorado</h2>
+                <h2>Panel 4</h2>
                 <div>
                     <div>Clover was a stout motherly mare approaching middle life, who had never quite got her figure
                         back after her fourth foal.</div>
@@ -216,7 +219,6 @@
             }
 
             function select(stateIndex) {
-                console.info(stateIndex, features[stateIndex]);
                 const [[x0, y0], [x1, y1]] = path.bounds(features[stateIndex]);
                 svg.transition().duration(750).call(
                     zoom.transform,

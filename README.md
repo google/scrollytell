@@ -69,7 +69,7 @@ Before going over the API, let's establish a vocabulary.
     </dd>
 </dl>
 
-<img src="legend.png" width="553" height="379">
+<img src="legend.png" width="600">
 
 ## API
 
@@ -159,6 +159,6 @@ This is not an officially supported Google product.
 
 [1]: https://google.github.io/scrollytell/examples
 [2]: https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
-[3]: https://github.com/google/scrollytell/raw/master/scrollytell.ts
+[3]: https://github.com/google/scrollytell/blob/master/scrollytell.ts
 [4]: https://amp.dev/about/stories/
 [5]: https://bost.ocks.org/mike/scroll/
