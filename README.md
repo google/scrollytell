@@ -69,7 +69,7 @@ Before going over the API, let's establish a vocabulary.
     </dd>
 </dl>
 
-![](legend-small.png "Scrollytell Legend")
+<img src="legend.png" width="553" height="379">
 
 ## API
 
