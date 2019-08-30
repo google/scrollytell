@@ -9,7 +9,10 @@
 <style>
     html, body { padding: 0; margin: 0; height:100% }
     html { overflow: hidden }
-    body { height: 100% }
+    body {
+        background-color: #F9F9F9;
+        height: 100%;
+    }
     h1, h2 {
         font-family: "Alegreya";
         text-align: center;
@@ -20,6 +23,8 @@
         position: relative;
         font-family: "Lexend Deca";
         font-size: 20px;
+        background-color: white;
+        z-index: 5;
     }
     .chart  {
         position: sticky;
@@ -32,6 +37,9 @@
     .panel > * {
         height: 250px;
         width: 100%;
+    }
+    .panel.intro > * {
+        height: auto;
     }
     .panel > h2 {
         height: inherit;
@@ -49,7 +57,7 @@
     .container.constrain  {
         max-width: 600px;
         margin: 0 auto 0 auto;
-        border: solid 4px grey;
+        border: 1px solid #ddd;
         box-sizing: border-box;
     }
     .chart.constrain {
@@ -66,8 +74,7 @@
     &nbsp;<input id="show_hud" type="checkbox" name="show_hud">
     <label for="show_hud">Show Scrollytell HUD</label>
     <h1>Animal Farm</h1>
-    <div class="panel">
-        <h2>Panel 0</h2>
+    <div class="panel intro">
         <div><div>Mr. Jones, of the Manor Farm, had locked the hen-houses for the night, but was too drunk to remember to shut the pop-holes.</div></div>
         <div><div>With the ring of light from his lantern dancing from side to side, he lurched across the yard, kicked off his boots at the back door, drew himself a last glass of beer from the barrel in the scullery, and made his way up to bed, where Mrs. Jones was already snoring.</div></div>
     </div>
@@ -95,14 +102,23 @@
     </div>
 </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.0.6/chroma.min.js"></script>
 <script type="module">
 import { Story } from "../scrollytell.js";
-    
+
+const colors = [
+    "Spectral",
+    "RdYlGn",
+    "RdBu",
+    "PiYG"
+];
+
 const story = window.story = new Story({
     chartSelector: ".chart",
     containerSelector: ".container",
     fullsizeChart: true,
-    panelSelector: ".panel"
+    panelSelector: ".panel",
+    progressHandler: render
 });
 
 const checkbox = document.getElementById('show_hud');
@@ -117,28 +133,32 @@ const width = canvas.width = canvas.clientWidth * dpr;
 const height = canvas.height = canvas.clientHeight * dpr;
 const context2d = canvas.getContext("2d");
 
-context2d.lineWidth = 3;
+context2d.lineWidth = 2 * dpr;
 
-let frame = 0;
 function render() {
-    const t = frame * 0.05;
-    const x0 = width / 2 - Math.sin(t) * width / 2;
-    const x1 = width / 2 + Math.sin(t) * width / 2;
+    // Determine colors.
+    const panel = story.getActivePanelIndex();
+    const pal = chroma.brewer[colors[panel + 1]];
+    const c0 = pal[0];
+    const c1 = chroma(c0).brighten();
+    const c2 = chroma(c1).brighten();
 
-    context2d.clearRect(0, 0, width, height);
+    // Determine circle radius.
+    const progress = story.getProgressValue();
+    const radius = (0.5 + 0.5 * Math.sin(progress * Math.PI)) * width / 3;
+
+    // Draw the scene.
+    context2d.fillStyle = c1;
+    context2d.fillRect(0, 0, width, height);
+    context2d.fillStyle = c0;
+    context2d.strokeStyle = c2;
     context2d.beginPath();
-
-    context2d.moveTo(x1, 0);
-    context2d.lineTo(x0, height);
-
-    context2d.moveTo(x1, height);
-    context2d.lineTo(x0, 0);
-
+    context2d.arc(width / 2, height / 2, radius, 0, Math.PI * 2);
+    context2d.fill();
     context2d.stroke();
-    frame++;
-    window.requestAnimationFrame(render);
 }
 
-window.requestAnimationFrame(render);
+render();
+
 </script>
 </body>
