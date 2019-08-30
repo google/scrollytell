@@ -1,0 +1,31 @@
+{
+    "name": "scrollytell",
+    "main": "scrollytell.js",
+    "module": "scrollytell.js",
+    "jsdelivr": "scrollytell.js",
+    "types": "scrollytell.d.ts",
+    "unpkg": "scrollytell.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/google/scrollytell.git"
+    },
+    "files": [
+        "scrollytell.d.ts",
+        "scrollytell.js",
+        "README.md"
+    ],
+    "keywords": [
+        "dom",
+        "visualization",
+        "animation",
+        "android"
+    ],
+    "author": "Google",
+    "license": "Apache-2.0",
+    "dependencies": {
+        "tslint": "^5.19.0"
+    },
+    "devDependencies": {
+        "http-server": "^0.11.1"
+    }
+}

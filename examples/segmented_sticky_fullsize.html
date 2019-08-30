@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Animal Farm</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Alegreya" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Lexend Deca" rel="stylesheet">
+<style>
+    html, body { padding: 0; margin: 0; height:100% }
+    html { overflow: hidden }
+    body { height: 100% }
+    h1, h2 {
+        font-family: "Alegreya";
+        text-align: center;
+    }
+    .container  {
+        height:100%;
+        overflow-y: scroll;
+        position: relative;
+        font-family: "Lexend Deca";
+        font-size: 20px;
+    }
+    .chart  {
+        position: sticky;
+        width: 100%;
+        height: 200px; /* <== Manipulated by Javascript */
+        top: calc(50% - 100px);
+        text-align: center;
+        z-index: -1;
+    }
+    .panel > * {
+        height: 250px;
+        width: 100%;
+    }
+    .panel > h2 {
+        height: inherit;
+        background: rgba(255, 200, 0, 0.7);
+    }
+    .panel > * > * {
+        background: rgba(255, 255, 255, 0.7);
+        margin: 0 auto 0 auto;
+        padding: 10px;
+    }
+    .chart > canvas {
+        width: 100%;
+        height: 100%;
+    }
+    .container.constrain  {
+        max-width: 600px;
+        margin: 0 auto 0 auto;
+        border: solid 4px grey;
+        box-sizing: border-box;
+    }
+    .chart.constrain {
+        max-width: 600px;
+    }
+</style>
+</head>
+<body>
+<div class="container constrain">
+<div>
+    <h1>Animal Farm</h1>
+    <div class="panel">
+        <h2>Panel 0</h2>
+        <div><div>Mr. Jones, of the Manor Farm, had locked the hen-houses for the night, but was too drunk to remember to shut the pop-holes.</div></div>
+        <div><div>With the ring of light from his lantern dancing from side to side, he lurched across the yard, kicked off his boots at the back door, drew himself a last glass of beer from the barrel in the scullery, and made his way up to bed, where Mrs. Jones was already snoring.</div></div>
+    </div>
+    <div class="chart constrain">
+        <canvas id="dataviz">
+        </canvas>
+    </div>
+    <div class="panel">
+        <h2>Panel 1</h2>
+        <div><div>As soon as the light in the bedroom went out there was a stirring and a fluttering all through the farm buildings.</div></div>
+        <div><div>Word had gone round during the day that old Major, the prize Middle White boar, had had a strange dream on the previous night and wished to communicate it to the other animals.</div></div>
+        <div><div>It had been agreed that they should all meet in the big barn as soon as Mr. Jones was safely out of the way.</div></div>
+        <div><div>Old Major (so he was always called, though the name under which he had been exhibited was Willingdon Beauty) was so highly regarded on the farm that everyone was quite ready to lose an hour's sleep in order to hear what he had to say.</div></div>
+    </div>
+    <div class="panel">
+        <h2>Panel 2</h2>
+        <div><div>At one end of the big barn, on a sort of raised platform, Major was already ensconced on his bed of straw, under a lantern which hung from a beam.</div></div>
+        <div><div>He was twelve years old and had lately grown rather stout, but he was still a majestic-looking pig, with a wise and benevolent appearance in spite of the fact that his tushes had never been cut.</div></div>
+        <div><div>Before long the other animals began to arrive and make themselves comfortable after their different fashions.</div></div>
+        <div><div>First came the three dogs, Bluebell, Jessie, and Pincher, and then the pigs, who settled down in the straw immediately in front of the platform.</div></div>
+        <div><div>The hens perched themselves on the window-sills, the pigeons fluttered up to the rafters, the sheep and cows lay down behind the pigs and began to chew the cud.</div></div>
+        <div><div>The two cart-horses, Boxer and Clover, came in together, walking very slowly and setting down their vast hairy hoofs with great care lest there should be some small animal concealed in the straw.</div></div>
+        <div><div>Clover was a stout motherly mare approaching middle life, who had never quite got her figure back after her fourth foal.</div></div>
+        <div><div>Boxer was an enormous beast, nearly eighteen hands high, and as strong as any two ordinary horses put together.</div></div>
+    </div>
+</div>
+</div>
+<script type="module">
+import { Story } from "../scrollytell.js";
+    
+window.story = new Story({
+    chartSelector: ".chart",
+    containerSelector: ".container",
+    developerHud: true,
+    fullsizeChart: true,
+    panelSelector: ".panel"
+});
+
+const canvas = document.querySelector("#dataviz");
+const dpr = window.devicePixelRatio;
+const width = canvas.width = canvas.clientWidth * dpr;
+const height = canvas.height = canvas.clientHeight * dpr;
+const context2d = canvas.getContext("2d");
+
+context2d.lineWidth = 3;
+
+let frame = 0;
+function render() {
+    const t = frame * 0.05;
+    const x0 = width / 2 - Math.sin(t) * width / 2;
+    const x1 = width / 2 + Math.sin(t) * width / 2;
+
+    context2d.clearRect(0, 0, width, height);
+    context2d.beginPath();
+
+    context2d.moveTo(x1, 0);
+    context2d.lineTo(x0, height);
+
+    context2d.moveTo(x1, height);
+    context2d.lineTo(x0, 0);
+
+    context2d.stroke();
+    frame++;
+    window.requestAnimationFrame(render);
+}
+
+window.requestAnimationFrame(render);
+</script>
+</body>

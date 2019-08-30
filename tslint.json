@@ -1,0 +1,18 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:all"
+    ],
+    "rules": {
+        "comment-format": false,
+        "completed-docs": false,
+        "max-classes-per-file": false,
+        "newline-before-return": false,
+        "no-namespace": false,
+        "typedef": false,
+        "no-magic-numbers": false,
+        "prefer-method-signature": false,
+        "strict-boolean-expressions": false
+    },
+    "rulesDirectory": []
+}

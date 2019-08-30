@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Animal Farm</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Alegreya" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lexend Deca" rel="stylesheet">
+    <style>
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            height: 100%
+        }
+
+        html {
+            overflow: hidden
+        }
+
+        body {
+            height: 100%
+        }
+
+        h1,
+        h2 {
+            font-family: "Alegreya";
+            text-align: center;
+        }
+
+        .container {
+            height: 100%;
+            overflow-y: scroll;
+            position: relative;
+            font-family: "Lexend Deca";
+            font-size: 20px;
+        }
+
+        .chart {
+            position: sticky;
+            width: 100%;
+            height: 200px;
+            top: calc(50% - 150px);
+            /* subtract half the height of the chart */
+            text-align: center;
+            z-index: -1;
+        }
+
+        .panel>* {
+            height: 250px;
+            width: 100%;
+        }
+
+        .panel>h2 {
+            height: inherit;
+            background: rgba(255, 200, 0, 0.7);
+        }
+
+        .panel>*>* {
+            background: rgba(255, 255, 255, 0.7);
+            margin: 0 auto 0 auto;
+            padding: 10px;
+        }
+
+        .container.constrain {
+            max-width: 600px;
+            margin: 0 auto 0 auto;
+            border: solid 2px grey;
+            box-sizing: border-box;
+        }
+
+        .chart.constrain {
+            max-width: 600px;
+            transform: translate(-2px, 0);
+        }
+
+        label {
+            font-size: 12px;
+        }
+
+        svg {
+            width: 480px;
+            height: 300px;
+            background: lightgray;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container constrain">
+        <div>
+            &nbsp;<input id="show_hud" type="checkbox" name="show_hud">
+            <label for="show_hud">Show Scrollytell HUD</label>
+            <h1>Animal Farm</h1>
+            <div class="panel">
+                <h2>America</h2>
+                <div>
+                    <div>Mr. Jones, of the Manor Farm, had locked the hen-houses for the night, but was too drunk to
+                        remember to shut the pop-holes.</div>
+                </div>
+                <div>
+                    <div>With the ring of light from his lantern dancing from side to side, he lurched across the yard,
+                        kicked off his boots at the back door, drew himself a last glass of beer from the barrel in the
+                        scullery, and made his way up to bed, where Mrs. Jones was already snoring.</div>
+                </div>
+            </div>
+            <svg class="chart constrain">
+            </svg>
+            <div class="panel">
+                <h2>Alabama</h2>
+                <div>
+                    <div>As soon as the light in the bedroom went out there was a stirring and a fluttering all through
+                        the farm buildings.</div>
+                </div>
+                <div>
+                    <div>Word had gone round during the day that old Major, the prize Middle White boar, had had a
+                        strange dream on the previous night and wished to communicate it to the other animals.</div>
+                </div>
+                <div>
+                    <div>It had been agreed that they should all meet in the big barn as soon as Mr. Jones was safely
+                        out of the way.</div>
+                </div>
+                <div>
+                    <div>Old Major (so he was always called, though the name under which he had been exhibited was
+                        Willingdon Beauty) was so highly regarded on the farm that everyone was quite ready to lose an
+                        hour's sleep in order to hear what he had to say.</div>
+                </div>
+            </div>
+            <div class="panel">
+                <h2>Alaska</h2>
+                <div>
+                    <div>At one end of the big barn, on a sort of raised platform, Major was already ensconced on his
+                        bed of straw, under a lantern which hung from a beam.</div>
+                </div>
+                <div>
+                    <div>He was twelve years old and had lately grown rather stout, but he was still a majestic-looking
+                        pig, with a wise and benevolent appearance in spite of the fact that his tushes had never been
+                        cut.</div>
+                </div>
+                <div>
+                    <div>Before long the other animals began to arrive and make themselves comfortable after their
+                        different fashions.</div>
+                </div>
+            </div>
+            <div class="panel">
+                <h2>Arizona</h2>
+                <div>
+                    <div>First came the three dogs, Bluebell, Jessie, and Pincher, and then the pigs, who settled down
+                        in the straw immediately in front of the platform.</div>
+                </div>
+                <div>
+                    <div>The hens perched themselves on the window-sills, the pigeons fluttered up to the rafters, the
+                        sheep and cows lay down behind the pigs and began to chew the cud.</div>
+                </div>
+                <div>
+                    <div>The two cart-horses, Boxer and Clover, came in together, walking very slowly and setting down
+                        their vast hairy hoofs with great care lest there should be some small animal concealed in the
+                        straw.</div>
+                </div>
+            </div>
+            <div class="panel">
+                <h2>Colorado</h2>
+                <div>
+                    <div>Clover was a stout motherly mare approaching middle life, who had never quite got her figure
+                        back after her fourth foal.</div>
+                </div>
+                <div>
+                    <div>Boxer was an enormous beast, nearly eighteen hands high, and as strong as any two ordinary
+                        horses put together.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.11.0/d3.min.js"></script>
+    <script src="https://unpkg.com/topojson-client@3"></script>
+    <script type="module">
+        import { Story } from "../scrollytell.js";
+            
+        function createDataViz(usTopoJson) {
+            const path = d3.geoPath();
+            const el = document.querySelector("svg");
+            const width = 960;
+            const height = 600;
+            const zoom = d3.zoom().scaleExtent([1, 8]).on("zoom", zoomed);
+            const svg = d3.select("svg").attr("viewBox", [0, 0, width, height]);
+            const g = svg.append("g");
+            const features = topojson.feature(usTopoJson, usTopoJson.objects.states).features;
+            const mesh = topojson.mesh(usTopoJson, usTopoJson.objects.states, (a, b) => a !== b);
+            const topo = path(mesh);
+
+            g.append("g")
+                .attr("fill", "#777")
+                .attr("cursor", "pointer")
+                .selectAll("path")
+                .data(features)
+                .join("path")
+                .attr("d", path)
+                .append("title")
+                .text(d => d.properties.name);
+
+            g.append("path")
+                .attr("fill", "none")
+                .attr("stroke", "white")
+                .attr("stroke-linejoin", "round")
+                .attr("d", topo);
+
+            svg.call(zoom);
+
+            function reset() {
+                svg.transition().duration(750).call(
+                    zoom.transform,
+                    d3.zoomIdentity,
+                    d3.zoomTransform(svg.node()).invert([width / 2, height / 2])
+                );
+            }
+
+            function select(stateIndex) {
+                console.info(stateIndex, features[stateIndex]);
+                const [[x0, y0], [x1, y1]] = path.bounds(features[stateIndex]);
+                svg.transition().duration(750).call(
+                    zoom.transform,
+                    d3.zoomIdentity
+                        .translate(width / 2, height / 2)
+                        .scale(Math.min(8, 0.9 / Math.max((x1 - x0) / width, (y1 - y0) / height)))
+                        .translate(-(x0 + x1) / 2, -(y0 + y1) / 2)
+                );
+            }
+
+            function zoomed() {
+                const { transform } = d3.event;
+                g.attr("transform", transform);
+                g.attr("stroke-width", 1 / transform.k);
+            }
+
+            return {
+                select: select,
+                reset: reset
+            };
+        }
+
+        const us = d3.json("https://cdn.jsdelivr.net/npm/us-atlas@2.1.0/us/states-10m.json");
+
+        us.then((usTopoJson) => {
+            const states = createDataViz(usTopoJson);
+            const story = new Story({
+                chartSelector: ".chart",
+                containerSelector: ".container",
+                panelSelector: ".panel",
+                enterHandler: (story, panel) => {
+                    if (panel <= 0) {
+                        states.reset();
+                    } else {
+                        states.select(panel - 1);
+                    }
+                }
+            });
+
+            const checkbox = document.getElementById('show_hud');
+            checkbox.addEventListener('click', () => {
+                story.showDeveloperHud(checkbox.checked);
+            });
+        });
+
+    </script>
+</body>

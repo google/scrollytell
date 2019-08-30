@@ -1,0 +1,6 @@
+{
+    "include": ["scrollytell.ts"],
+    "compilerOptions": {
+        "target": "es2015"
+    }
+}

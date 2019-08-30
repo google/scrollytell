@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<title>Animal Farm</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    html, body { padding: 0; margin: 0; height:100% }
+    html { overflow:hidden }
+    body { height:100% }
+    .container  {
+        height:100%;
+        overflow-y:scroll;
+        position:relative;
+    }
+    .container.constrain {
+        box-sizing: border-box;
+        border:solid 4px grey;
+        max-width: 600px;
+        margin: 0 auto 0 auto;
+    }
+</style>
+</head>
+<body>
+<div class="container constrain">
+    <h1>Animal Farm</h1>
+    <p>
+    Mr. Jones, of the Manor Farm, had locked the hen-houses for the night, but was too drunk to remember to shut the pop-holes. With the ring of light from his lantern dancing from side to side, he lurched across the yard, kicked off his boots at the back door, drew himself a last glass of beer from the barrel in the scullery, and made his way up to bed, where Mrs. Jones was already snoring.
+    </p>
+    <p>
+    As soon as the light in the bedroom went out there was a stirring and a fluttering all through the farm buildings. Word had gone round during the day that old Major, the prize Middle White boar, had had a strange dream on the previous night and wished to communicate it to the other animals. It had been agreed that they should all meet in the big barn as soon as Mr. Jones was safely out of the way. Old Major (so he was always called, though the name under which he had been exhibited was Willingdon Beauty) was so highly regarded on the farm that everyone was quite ready to lose an hour's sleep in order to hear what he had to say.
+    </p>
+    <p>
+    At one end of the big barn, on a sort of raised platform, Major was already ensconced on his bed of straw, under a lantern which hung from a beam. He was twelve years old and had lately grown rather stout, but he was still a majestic-looking pig, with a wise and benevolent appearance in spite of the fact that his tushes had never been cut. Before long the other animals began to arrive and make themselves comfortable after their different fashions. First came the three dogs, Bluebell, Jessie, and Pincher, and then the pigs, who settled down in the straw immediately in front of the platform. The hens perched themselves on the window-sills, the pigeons fluttered up to the rafters, the sheep and cows lay down behind the pigs and began to chew the cud. The two cart-horses, Boxer and Clover, came in together, walking very slowly and setting down their vast hairy hoofs with great care lest there should be some small animal concealed in the straw. Clover was a stout motherly mare approaching middle life, who had never quite got her figure back after her fourth foal. Boxer was an enormous beast, nearly eighteen hands high, and as strong as any two ordinary horses put together. [...]
+    </p>
+    <p>
+    The two horses had just lain down when a brood of ducklings, which had lost their mother, filed into the barn, cheeping feebly and wandering from side to side to find some place where they would not be trodden on. Clover made a sort of wall round them with her great foreleg, and the ducklings nestled down inside it and promptly fell asleep. At the last moment Mollie, the foolish, pretty white mare who drew Mr. Jones's trap, came mincing daintily in, chewing at a lump of sugar. She took a place near the front and began flirting her white mane, hoping to draw attention to the red ribbons it was plaited with. Last of all came the cat, who looked round, as usual, for the warmest place, and finally squeezed herself in between Boxer and Clover; there she purred contentedly throughout Major's speech without listening to a word of what he was saying.
+    </p>
+    <p>
+    All the animals were now present except Moses, the tame raven, who slept on a perch behind the back door. When Major saw that they had all made themselves comfortable and were waiting attentively, he cleared his throat and began:
+    </p>
+    <p>
+    "Comrades, you have heard already about the strange dream that I had last night. But I will come to the dream later. I have something else to say first. I do not think, comrades, that I shall be with you for many months longer, and before I die, I feel it my duty to pass on to you such wisdom as I have acquired. I have had a long life, I have had much time for thought as I lay alone in my stall, and I think I may say that I understand the nature of life on this earth as well as any animal now living. It is about this that I wish to speak to you.
+    </p>
+    <p>
+    "Now, comrades, what is the nature of this life of ours? Let us face it: our lives are miserable, laborious, and short. We are born, we are given just so much food as will keep the breath in our bodies, and those of us who are capable of it are forced to work to the last atom of our strength; and the very instant that our usefulness has come to an end we are slaughtered with hideous cruelty. No animal in England knows the meaning of happiness or leisure after he is a year old. No animal in England is free. The life of an animal is misery and slavery: that is the plain truth.
+    </p>
+    <p>
+    "But is this simply part of the order of nature? Is it because this land of ours is so poor that it cannot afford a decent life to those who dwell upon it? No, comrades, a thousand times no! The soil of England is fertile, its climate is good, it is capable of affording food in abundance to an enormously greater number of animals than now inhabit it. This single farm of ours would support a dozen horses, twenty cows, hundreds of sheep--and all of them living in a comfort and a dignity that are now almost beyond our imagining. Why then do we continue in this miserable condition? Because nearly the whole of the produce of our labour is stolen from us by human beings. There, comrades, is the answer to all our problems. It is summed up in a single word--Man. Man is the only real enemy we have. Remove Man from the scene, and the root cause of hunger and overwork is abolished for ever.
+    </p>
+</div>
+<script type="module">
+
+    import { Story } from "../scrollytell.js";
+
+    window.story = new Story({
+        containerSelector: ".container",
+        developerHud: true,
+        panelSelector: ".container p",
+        enterHandler: (story, panel) => {
+            console.info(`Entered panel ${panel}`);
+        },
+        exitHandler: (story, panel) => {
+            console.info(`Exited panel ${panel}`);
+        },
+        progressHandler: (story, progress) => {
+            const percentage = (100 * progress).toFixed(2);
+            console.info(`Progress is now ${percentage}%`);
+        }
+    });
+
+</script>
+</body>
