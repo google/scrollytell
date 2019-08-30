@@ -55,11 +55,16 @@
     .chart.constrain {
         max-width: 600px;
     }
+    label {
+        font-size: 12px;
+    }
 </style>
 </head>
 <body>
 <div class="container constrain">
 <div>
+    &nbsp;<input id="show_hud" type="checkbox" name="show_hud">
+    <label for="show_hud">Show Scrollytell HUD</label>
     <h1>Animal Farm</h1>
     <div class="panel">
         <h2>Panel 0</h2>
@@ -93,12 +98,17 @@
 <script type="module">
 import { Story } from "../scrollytell.js";
     
-window.story = new Story({
+const story = window.story = new Story({
     chartSelector: ".chart",
     containerSelector: ".container",
-    developerHud: true,
     fullsizeChart: true,
     panelSelector: ".panel"
+});
+
+const checkbox = document.getElementById('show_hud');
+
+checkbox.addEventListener('click', () => {
+    story.showDeveloperHud(checkbox.checked);
 });
 
 const canvas = document.querySelector("#dataviz");

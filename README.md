@@ -14,7 +14,7 @@ Before going over the API, let's establish a vocabulary.
         An area within the container designated for data visualization that uses
         <code>sticky</code> or <code>fixed</code> positioning. Typically this is
         an <code>&lt;svg&gt;</code> or <code>&lt;canvas&gt;</code> and has a low
-        <code>z-order</code> to allow explanatory text to flow past.
+        <code>z-order</code> to allow explanatory text to flow over.
         <br><br>
         <p>
         Not all scrollytell stories have charts. For example, the visualization
