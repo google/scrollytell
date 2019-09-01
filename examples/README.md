@@ -9,3 +9,4 @@ has CSS and JavaScript embedded in the HTML file.
 | Fancy panels with centered chart.         | [live demo](https://google.github.io/scrollytell/examples/segmented.html)                 | [raw HTML](https://github.com/google/scrollytell/raw/master/examples/segmented.html)                 |
 | Fancy panels with sticky chart using d3.  | [live demo](https://google.github.io/scrollytell/examples/segmented_sticky_d3.html)       | [raw HTML](https://github.com/google/scrollytell/raw/master/examples/segmented_sticky_d3.html) |
 | Fancy panels with sticky fullsize canvas. | [live demo](https://google.github.io/scrollytell/examples/segmented_sticky_fullsize.html) | [raw HTML](https://github.com/google/scrollytell/raw/master/examples/segmented_sticky_fullsize.html) |
+| Fancy demo with Filament for 3D rendering.| [live demo](https://prideout.net/euler)                                                   | [github project](https://github.com/prideout/euler) |
