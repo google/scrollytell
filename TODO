@@ -1,0 +1,34 @@
+guideline should be configurable, defaulting to 0.5
+
+InteractionObserver and/or Perf Analysis of getBoundingClientRect
+
+Add a Timeline class
+    const timeline = new Timeline([
+        // Panel 0
+        [
+        [0.20, 0.34, "foo"], // smoothstep by default
+        [0.20, 0.34, "bar", Timeline.LINEAR],
+        [0.20, 0.34, "baz"],
+        ],
+
+        // Panel 1
+        [
+        [0.20, 0.34, "hey"],
+        [0.20, 0.34, "fiddle"],
+        [0.20, 0.34, "poodle"],
+        ],
+    ]);
+    timeline.update(panel, progress);
+    const avars = timeline.avars;
+    console.info(avars.foo, avars.bar)
+
+npm package
+
+Advertise to @datavis , Google Creative Lab
+
+Every example should have either svg or canvas (not image)
+
+Every example should have toggleable HUD
+
+Can we use ES2015 syntax but and support modern "import", but generate JS that
+    is amenable to old browsers? Look at the d3/d3 toplevel README.
